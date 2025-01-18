@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import ToggleTheme from "./toggle-theme";
 import HeaderLogo from "./headerLogo";
 import { Button } from "./ui/button";
@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { useRouter } from "next/navigation";
 
 interface UserProps {
   name?: string | null;
@@ -20,20 +19,7 @@ interface UserProps {
 }
 
 const Navbar = () => {
-  const { data: session, status } = useSession();
-  const router = useRouter();
-  
-  useEffect(() => {
-    // If the session is still loading, do not redirect
-    if (status === "loading") {
-      return; // Don't redirect while loading
-    }
-
-    if (!session) {
-      // Redirect to sign-in if no session found
-      router.push("/api/auth/signin");
-    }
-  }, [session, status, router]);
+  const { data: session } = useSession();
 
   const SignOut = ({ user }: { user: UserProps | null }) => {
     return (
@@ -65,7 +51,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex flex-row items-center justify-between p-4 shadow-md">
+    <nav className="flex flex-row items-center justify-between py-4 px-8 shadow-md">
       <HeaderLogo />
       <div className="flex flex-row items-center space-x-8">
         <ToggleTheme />

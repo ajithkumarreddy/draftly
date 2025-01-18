@@ -49,7 +49,16 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+			primaryColor: {
+				DEFAULT: '#3A37FF'
+			},
+			secondaryColor: {
+				DEFAULT: '#2420E2'
+			},
+			tertiaryColor: {
+				DEFAULT: '#3A37FD'
+			}
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
