@@ -11,7 +11,7 @@ export const getDocuments = async (
   userId: string | undefined
 ): Promise<GetDocumentsResponse> => {
   try {
-    const response = await fetch(`http://localhost:6001/api/documents`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/documents`, {
       method: "POST",
       body: JSON.stringify({ userId }),
       headers: {
@@ -53,7 +53,7 @@ export const createDocument = async ({
   };
 
   try {
-    const response = await fetch("http://localhost:6001/api/createDocument", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/createDocument`, {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -81,7 +81,7 @@ export const deleteDocument = async ({
   userId: string | undefined;
 }): Promise<DeleteDocumentResponse> => {
   try {
-    const response = await fetch("http://localhost:6001/api/deleteDocument", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/deleteDocument`, {
       method: "DELETE",
       body: JSON.stringify({ _id, userId }),
       headers: {
@@ -103,7 +103,7 @@ export const deleteDocument = async ({
 // Get Document
 export const getDocument = async ({ id }: { id: string }) => {
   try {
-    const response = await fetch("http://localhost:6001/api/getDocument", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getDocument`, {
       method: "POST",
       body: JSON.stringify({ _id: id }),
       headers: {
@@ -131,7 +131,7 @@ export const updateDocument = async ({
   rawTextString: string;
 }) => {
   try {
-    const response = await fetch("http://localhost:6001/api/updateDocument", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/updateDocument`, {
       method: "PUT",
       body: JSON.stringify({ _id, content: rawTextString }),
       headers: {
@@ -160,7 +160,7 @@ export const updateDocumentTitle = async ({
 }) => {
   try {
     const response = await fetch(
-      "http://localhost:6001/api/updateDocumentTitle",
+      `${process.env.NEXT_PUBLIC_API_URL}/api/updateDocumentTitle`,
       {
         method: "PUT",
         body: JSON.stringify({ _id, title }),
