@@ -7,28 +7,25 @@ import { getDocument } from "@/utilities/eventHandlers";
 import { formatDate } from "@/utilities/format";
 
 const Document = ({ params }: { params: { id: string } }) => {
-  const [documentId, setDocumentId] = useState("");
-  const [document, setDocument] = useState([]);
+  const [document, setDocument] = useState<any>(null); // Set the initial state for the document
 
-  useEffect(() => {
-    const fetchId = async () => {
-      const { id } = await params;
-      setDocumentId(id);
-    };
-
-    fetchId();
-  }, [params]);
-
+  // Fetch the document on mount using the provided params
   useEffect(() => {
     const fetchDocument = async () => {
-      const response = await getDocument({ id: documentId });
+      const response = await getDocument({ id: params.id }); // Use params directly
       if (response?.status === "success") {
         setDocument(response?.document);
       }
     };
 
-    documentId && fetchDocument();
-  }, [documentId]);
+    if (params.id) {
+      fetchDocument(); // Fetch document when the `id` is available
+    }
+  }, [params.id]); // Dependency array ensures the effect runs only when the `id` changes
+
+  if (!document) {
+    return <div>Loading...</div>; // Optionally show a loading state
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-8 transition-colors duration-300">
