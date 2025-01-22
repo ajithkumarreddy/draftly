@@ -8,7 +8,7 @@ import { formatDate } from "@/utilities/format";
 
 const Document = ({ params }: { params: { id: string } }) => {
   const [documentId, setDocumentId] = useState("");
-  const [document, setDocument] = useState<any>([]);
+  const [document, setDocument] = useState([]);
 
   useEffect(() => {
     const fetchId = async () => {

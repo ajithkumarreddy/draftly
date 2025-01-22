@@ -120,7 +120,7 @@ const Dashboard = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {documents.map((document: any) => (
+              {documents.map((document) => (
                 <TableRow
                   key={document?._id}
                   className="group hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-all border-b last:border-b-0"
