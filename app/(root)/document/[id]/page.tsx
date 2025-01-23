@@ -7,12 +7,12 @@ import { getDocument } from "@/utilities/eventHandlers";
 import { formatDate } from "@/utilities/format";
 
 const Document = ({ params }: { params: { id: string } }) => {
-  const [document, setDocument] = useState<any>(null); // Set the initial state for the document
+  const [document, setDocument] = useState<any>(null);
 
   // Fetch the document on mount using the provided params
   useEffect(() => {
     const fetchDocument = async () => {
-      const response = await getDocument({ id: params.id }); // Use params directly
+      const response = await getDocument({ id: params.id });
       if (response?.status === "success") {
         setDocument(response?.document);
       }
@@ -21,10 +21,10 @@ const Document = ({ params }: { params: { id: string } }) => {
     if (params.id) {
       fetchDocument(); // Fetch document when the `id` is available
     }
-  }, [params.id]); // Dependency array ensures the effect runs only when the `id` changes
+  }, [params.id]);
 
   if (!document) {
-    return <div>Loading...</div>; // Optionally show a loading state
+    return <div>Loading...</div>; 
   }
 
   return (
